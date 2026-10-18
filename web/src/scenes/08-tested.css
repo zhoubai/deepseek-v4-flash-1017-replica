@@ -1,0 +1,172 @@
+/* ============================================================
+   SCENE 08 — 我的实测（68.0 → 74.0s）
+   ============================================================ */
+.scene--tested { background: #14110c; }
+.s8-warm {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(72% 64% at 20% 36%, rgba(255, 228, 176, .22), rgba(0,0,0,0) 66%),
+    linear-gradient(90deg, rgba(26, 20, 12, .46), rgba(0,0,0,0) 36%, rgba(0,0,0,0) 60%, rgba(18, 14, 8, .34));
+}
+.s8-stage { position: absolute; inset: 0; z-index: 2; transform-origin: 50% 50%; will-change: transform; }
+
+/* ---------------- 左上栏目 ---------------- */
+.s8-label { position: absolute; left: 56px; top: 96px; }
+.s8-kicker {
+  font-family: var(--mono);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .17em;
+  color: #2FE38A;
+  text-shadow: 0 0 16px rgba(47, 227, 138, .55);
+}
+.s8-sub {
+  margin-top: 6px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 500; letter-spacing: .07em;
+  color: #F0F5EE;
+  text-shadow: 0 1px 8px rgba(0,0,0,.55);
+}
+.s8-sub i {
+  display: block; width: 1.6px; height: 16px;
+  background: #F3F6F0; opacity: .92;
+}
+
+/* ---------------- 大标题 ---------------- */
+.s8-title {
+  position: absolute; left: 42px; top: 172px;
+  margin: 0;
+  display: flex;
+  font-size: 94px; font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -.012em;
+  color: #F6F7F4;
+  white-space: nowrap;
+  text-shadow: 0 8px 34px rgba(0,0,0,.42);
+}
+.s8-title span { display: inline-block; will-change: transform; }
+.s8-title .g {
+  color: #2FE38A;
+  text-shadow: 0 0 34px rgba(47, 227, 138, .38), 0 8px 34px rgba(0,0,0,.34);
+}
+
+/* ---------------- 两行能力 ---------------- */
+.s8-row {
+  position: absolute; left: 55px;
+  display: flex; align-items: center;
+  height: 59px;
+}
+.s8-row--1 { top: 305px; }
+.s8-row--2 { top: 387px; }
+.s8-num {
+  width: 59px; height: 59px; flex: none;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 34% 28%, #58FFAC 0%, #2FE38A 46%, #18BE6D 100%);
+  color: #05301B;
+  font-size: 22px; font-weight: 800; letter-spacing: -.02em;
+  box-shadow: 0 0 26px rgba(47, 227, 138, .45), inset 0 1px 2px rgba(255,255,255,.45);
+}
+.s8-ico {
+  width: 44px; height: 44px; flex: none;
+  margin-left: 5px;
+  display: grid; place-items: center;
+  filter: drop-shadow(0 0 8px rgba(47, 227, 138, .5));
+}
+.s8-ic { width: 46px; height: 34px; display: block; }
+.s8-tag {
+  position: relative;
+  margin-left: 5px;
+  height: 49px;
+  display: flex; align-items: center;
+  padding: 0 17px 0 21px;
+  background: linear-gradient(90deg, rgba(30, 32, 30, .88), rgba(28, 30, 28, .76));
+  border-radius: 4px;
+  color: #F7F8F5;
+  font-size: 25px; font-weight: 800; letter-spacing: -.005em;
+  transform: translateY(4px);
+  box-shadow: 0 9px 24px rgba(0,0,0,.38);
+}
+.s8-tag::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 7px;
+  background: #2FE38A;
+  border-radius: 4px 0 0 4px;
+  box-shadow: 0 0 14px rgba(47, 227, 138, .8);
+}
+
+/* 绿色发光扫过 */
+.s8-sweep {
+  position: absolute; left: 42px; top: 296px;
+  width: 300px; height: 172px;
+  z-index: 3; pointer-events: none;
+  background: linear-gradient(104deg,
+    rgba(47,227,138,0) 0%,
+    rgba(47,227,138,.10) 32%,
+    rgba(120,255,190,.34) 50%,
+    rgba(47,227,138,.10) 68%,
+    rgba(47,227,138,0) 100%);
+  transform: skewX(-12deg);
+  mix-blend-mode: screen;
+  opacity: 0;
+  filter: blur(2px);
+}
+
+/* ---------------- 金色奖杯卡 ---------------- */
+.s8-card {
+  position: absolute; left: 998px; top: 78px;
+  width: 260px; height: 269px;
+  border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 15px 20px 0;
+  background: linear-gradient(155deg, rgba(21, 20, 16, .96), rgba(33, 30, 21, .94) 58%, rgba(24, 22, 17, .96));
+  border: 1.4px solid rgba(201, 166, 83, .92);
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255, 230, 160, .18),
+    inset 0 0 46px rgba(198, 162, 78, .06);
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+}
+.s8-card::before {
+  content: '';
+  position: absolute; inset: 5px;
+  border-radius: 7px;
+  border: 1px solid rgba(201, 166, 83, .22);
+  pointer-events: none;
+}
+.s8-shine {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 96px;
+  background: linear-gradient(90deg, rgba(255,226,152,0), rgba(255, 230, 165, .16), rgba(255,226,152,0));
+  transform: skewX(-18deg);
+  pointer-events: none;
+  z-index: 3;
+}
+.s8-cup {
+  width: 56px; height: 54px;
+  margin-top: 2px;
+  filter: drop-shadow(0 0 10px rgba(232, 190, 85, .35));
+  flex: none;
+}
+.s8-card-t {
+  margin-top: 7px;
+  font-size: 34px; font-weight: 800;
+  color: #FFFFFF; letter-spacing: -.012em;
+  text-shadow: 0 2px 10px rgba(0,0,0,.4);
+}
+.s8-card-s {
+  margin-top: 2px;
+  font-size: 12.5px; font-weight: 500;
+  color: #A69C7E; letter-spacing: .08em;
+}
+.s8-pills {
+  margin-top: 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  width: 100%;
+}
+.s8-pill {
+  width: 206px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.2px solid rgba(201, 166, 83, .85);
+  border-radius: 5px;
+  background: rgba(255, 214, 120, .035);
+  color: #E4C470;
+  font-size: 16px; font-weight: 600; letter-spacing: .12em;
+}

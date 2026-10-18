@@ -1,0 +1,147 @@
+/* ============================================================
+   SCENE 02-release — 官方发推
+   ============================================================ */
+.scene--release { background: #040806; }
+
+.rel-cam { position: absolute; inset: 0; transform-origin: 50% 54%; will-change: transform; }
+
+/* 环境绿光（呼吸） */
+.rel-ambient {
+  position: absolute; inset: -12%;
+  background:
+    radial-gradient(46% 50% at 31% 66%, rgba(30, 158, 112, .32) 0%, rgba(14, 72, 53, .15) 46%, rgba(0, 0, 0, 0) 76%),
+    radial-gradient(40% 34% at 26% 88%, rgba(24, 130, 92, .20) 0%, rgba(0, 0, 0, 0) 72%),
+    linear-gradient(180deg, rgba(16, 34, 40, .10) 0%, rgba(0, 0, 0, 0) 42%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 44%, rgba(3, 8, 9, .55) 72%, rgba(3, 8, 9, .72) 100%);
+  filter: blur(4px);
+  transform-origin: 40% 55%;
+  pointer-events: none;
+}
+
+/* 扫描线 */
+.rel-scan {
+  position: absolute; left: 0; right: 0; top: -150px; height: 150px;
+  background: linear-gradient(180deg, rgba(47, 227, 138, 0) 0%, rgba(47, 227, 138, .045) 55%, rgba(120, 255, 190, .075) 92%, rgba(47, 227, 138, 0) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* ---------------- 推文卡 ---------------- */
+.rel-tweet {
+  position: absolute; left: 70px; top: 68px;
+  width: 820px; height: 170px;
+  border-radius: 16px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .05);
+  padding: 17px 21px 0;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.rel-tw-head { display: flex; align-items: flex-start; gap: 7px; }
+.rel-tw-avatar {
+  width: 57px; height: 57px; border-radius: 50%;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06);
+}
+.rel-tw-avatar img { width: 78%; height: 78%; object-fit: contain; display: block; }
+.rel-tw-id { padding-top: 3px; }
+.rel-tw-name {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 20px; font-weight: 700; color: #EDF1F0; line-height: 1.16;
+  letter-spacing: .002em;
+}
+.rel-tw-badge {
+  display: block; width: 16px; height: 17px; border-radius: 4px;
+  background: linear-gradient(180deg, #FFDD4F 0%, #F7B500 100%);
+  box-shadow: 0 0 10px rgba(255, 201, 60, .45), inset 0 1px 0 rgba(255, 255, 255, .55);
+  margin-top: 1px;
+}
+.rel-tw-handle { font-size: 15.5px; color: #6E7678; margin-top: 3px; letter-spacing: .004em; }
+.rel-tw-body {
+  margin-top: 12px;
+  font-size: 25px; font-weight: 500; color: #E7E9EA;
+  letter-spacing: -.004em;
+}
+.rel-tw-meta {
+  margin-top: 9px;
+  display: flex; align-items: center; gap: 7px;
+  font-size: 15px; color: #6E7678;
+}
+.rel-tw-meta i { font-style: normal; color: #4E5456; }
+.rel-tw-meta b { color: #D8DBDA; font-weight: 600; }
+
+/* ---------------- 绿胶囊 ---------------- */
+.rel-capsule {
+  position: absolute; left: 68px; top: 262px;
+  height: 41px; padding: 0 19px 0 15px;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(180deg, rgba(22, 34, 29, .92), rgba(9, 17, 14, .92));
+  border: 1px solid rgba(255, 255, 255, .10);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .42);
+  font-size: 21px; font-weight: 600; color: #ECF0EE;
+  letter-spacing: .005em;
+  transform-origin: 0 50%;
+  will-change: transform, opacity;
+}
+.rel-capsule-dot {
+  width: 9px; height: 9px; border-radius: 50%; flex: none;
+  background: #16F888;
+  box-shadow: 0 0 12px rgba(34, 245, 136, .95), 0 0 3px rgba(255, 255, 255, .7);
+}
+
+/* ---------------- 大标题 ---------------- */
+.rel-title-wrap { position: absolute; left: 70px; top: 354px; will-change: transform, opacity; }
+.rel-title {
+  position: relative;
+  display: flex; align-items: flex-end;
+  font-size: 78px; font-weight: 800; line-height: 1;
+  color: #fff;
+  letter-spacing: -.012em;
+  white-space: nowrap;
+  z-index: 2;
+}
+.rel-ch { display: inline-block; will-change: transform, opacity; }
+.rel-title-glow {
+  position: absolute; left: -4%; right: -2%; bottom: -34px; height: 120px;
+  background: radial-gradient(58% 100% at 44% 62%, rgba(36, 200, 136, .30) 0%, rgba(20, 120, 80, .10) 46%, rgba(0, 0, 0, 0) 76%);
+  filter: blur(10px);
+  transform-origin: 20% 60%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------------- 版本列表阶段 ---------------- */
+.rel-stage2 { position: absolute; inset: 0; }
+.rel-vrow {
+  position: absolute; left: 74px;
+  font-size: 59px; font-weight: 800; line-height: 1;
+  letter-spacing: -.012em;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+.rel-vrow--1 { top: 165px; color: #a9a9a9; }
+.rel-vrow--2 { top: 299px; color: #a9a9a9; }
+.rel-vrow--3 { top: 434px; font-size: 58px; color: #ffffff; z-index: 2; }
+
+/* ---------------- 印章 ---------------- */
+.rel-stamp-title, .rel-stamp-ver { z-index: 4; transform-origin: 50% 50%; }
+.rel-stamp-title .stamp { filter: drop-shadow(0 0 26px rgba(88, 102, 235, .72)) drop-shadow(0 0 8px rgba(78, 91, 214, .45)); }
+.rel-stamp-ver .stamp { filter: drop-shadow(0 0 14px rgba(78, 91, 214, .40)); }
+
+/* 印章砸入闪光 */
+.rel-stampflash {
+  position: absolute; left: 50%; top: 50%;
+  width: 1280px; height: 1280px; margin: -640px 0 0 -640px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(110, 130, 255, .20) 0%, rgba(70, 90, 220, .08) 34%, rgba(0, 0, 0, 0) 62%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ---------------- 头像 ---------------- */
+.rel-avatar { z-index: 6; }

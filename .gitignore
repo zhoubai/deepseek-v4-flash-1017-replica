@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# 临时 / 日志
+*.log
+*.tmp

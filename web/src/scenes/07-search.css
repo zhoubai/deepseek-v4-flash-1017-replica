@@ -1,0 +1,272 @@
+/* ============================================================
+   SCENE 07-search — Search & Fetch API（57.5 → 68.0s）
+   暗场：官方推文卡 × API 文档浮层（黄色荧光笔）× 三卡 pipeline
+   ============================================================ */
+.scene--search { background: #0a0d11; }
+
+.sch-cam { position: absolute; inset: 0; transform-origin: 50% 54%; will-change: transform; }
+
+/* 环境光：左中绿光 + 右侧深蓝暗部 */
+.sch-ambient {
+  position: absolute; inset: -12%;
+  background:
+    radial-gradient(38% 30% at 54% 76%, rgba(30, 150, 112, .20) 0%, rgba(16, 74, 56, .10) 48%, rgba(0, 0, 0, 0) 78%),
+    radial-gradient(30% 26% at 30% 62%, rgba(24, 120, 90, .06) 0%, rgba(0, 0, 0, 0) 74%),
+    radial-gradient(34% 30% at 22% 26%, rgba(38, 66, 108, .10) 0%, rgba(0, 0, 0, 0) 74%),
+    linear-gradient(180deg, rgba(16, 24, 32, .10) 0%, rgba(0, 0, 0, 0) 46%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 56%, rgba(4, 8, 10, .24) 82%, rgba(4, 8, 10, .32) 100%);
+  filter: blur(4px);
+  transform-origin: 36% 58%;
+  pointer-events: none;
+}
+
+.sch-scan {
+  position: absolute; left: 0; right: 0; top: -150px; height: 150px;
+  background: linear-gradient(180deg, rgba(47, 227, 138, 0) 0%, rgba(47, 227, 138, .04) 55%, rgba(120, 255, 190, .07) 92%, rgba(47, 227, 138, 0) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* ---------------- 推文卡（与 release 同款） ---------------- */
+.sch-tweet {
+  position: absolute; left: 66px; top: 53px;
+  width: 895px; height: 176px;
+  border-radius: 16px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .05);
+  padding: 23px 20px 0 24px;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.sch-tw-head { display: flex; align-items: flex-start; gap: 7px; }
+.sch-tw-avatar {
+  width: 57px; height: 57px; border-radius: 50%;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06);
+}
+.sch-tw-avatar img { width: 78%; height: 78%; object-fit: contain; display: block; }
+.sch-tw-id { padding-top: 3px; }
+.sch-tw-name {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 20px; font-weight: 700; color: #EDF1F0; line-height: 1.16;
+}
+.sch-tw-badge {
+  display: block; width: 16px; height: 17px; border-radius: 4px;
+  background: linear-gradient(180deg, #FFDD4F 0%, #F7B500 100%);
+  box-shadow: 0 0 10px rgba(255, 201, 60, .45), inset 0 1px 0 rgba(255, 255, 255, .55);
+  margin-top: 1px;
+}
+.sch-tw-handle { font-size: 15.5px; color: #6E7678; margin-top: 3px; }
+.sch-tw-body {
+  margin-top: 12px;
+  font-size: 25px; color: #E7E9EA; line-height: 1.18; letter-spacing: .002em;
+  white-space: nowrap;
+}
+.sch-tw-meta {
+  margin-top: 9px; display: flex; align-items: center; gap: 7px;
+  font-size: 15px; color: #6E7678; line-height: 1.2;
+}
+.sch-tw-meta i { font-style: normal; color: #565D5F; }
+
+/* ---------------- API 文档浮层 ---------------- */
+.sch-doc-win.win {
+  position: absolute; left: 62px; top: 59px; width: 365px; height: 127px;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .06);
+  transform-origin: 50% 50%;
+  overflow: hidden;
+}
+.sch-doc-win .win-bar {
+  height: 21px !important;
+  padding: 0 8px;
+  gap: 6px;
+  background: linear-gradient(#4B5054, #3A3F43);
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+.sch-doc-win .win-dots { gap: 4.5px; }
+.sch-doc-win .win-dots i { width: 6px; height: 6px; }
+.sch-doc-win .win-title { font-size: 9.5px; color: #D3D7DA; font-weight: 500; letter-spacing: .02em; }
+.sch-doc-win .win-body {
+  height: calc(100% - 21px) !important;
+  padding: 7px 10px 0;
+  background: #fff;
+  overflow: hidden;
+}
+.sch-doc-h {
+  margin: 0 0 4px;
+  font-size: 16px; font-weight: 800; color: #12161A; line-height: 1.2;
+  letter-spacing: .01em;
+}
+.sch-doc-p {
+  margin: 0 0 3px;
+  font-size: 9.2px; color: #3B434A; line-height: 1.5;
+  white-space: nowrap;
+}
+.sch-hlrow {
+  position: relative;
+  margin: 0 0 2.5px;
+  padding: 1px 5px 2px;
+  border-radius: 3px;
+  white-space: nowrap;
+  width: max-content;
+}
+.sch-hlrow > .sch-hl {
+  position: absolute; inset: 0;
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(255, 227, 138, .92), rgba(255, 205, 66, .82));
+  border: 1px solid rgba(236, 172, 16, .9);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+.sch-hlrow > span { position: relative; font-size: 9.2px; color: #1A2025; line-height: 1.4; }
+.sch-hlrow b { font-weight: 800; }
+.sch-doc-p--last { margin-top: 4px; }
+
+/* ---------------- 连线 ---------------- */
+.sch-link { position: absolute; top: 397px; height: 3px; }
+.sch-link--1 { left: 333px; width: 153px; }
+.sch-link--2 { left: 713px; width: 122px; }
+.sch-link-line {
+  position: absolute; inset: 0;
+  border-radius: 2px;
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+.sch-link--1 .sch-link-line {
+  background: linear-gradient(90deg, rgba(47, 227, 138, .9), rgba(86, 242, 166, 1));
+  box-shadow: 0 0 10px rgba(47, 227, 138, .6), 0 0 24px rgba(47, 227, 138, .3);
+}
+.sch-link--2 .sch-link-line {
+  background: linear-gradient(90deg, rgba(77, 107, 254, .9), rgba(110, 140, 255, 1));
+  box-shadow: 0 0 10px rgba(77, 107, 254, .6), 0 0 24px rgba(77, 107, 254, .3);
+}
+.sch-link-flow {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .9) 0 3px, rgba(255, 255, 255, 0) 3px 26px);
+  opacity: .24;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+.sch-link-spark {
+  position: absolute; top: 50%; left: 0;
+  width: 16px; height: 16px; margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 32%, rgba(255, 255, 255, .55) 46%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(.3px);
+  will-change: transform;
+}
+
+/* ---------------- 三张 pipeline 卡 ---------------- */
+.sch-card {
+  position: absolute;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(17, 26, 25, .97) 0%, rgba(6, 11, 11, .99) 100%);
+  will-change: transform, opacity;
+}
+.sch-card::after {
+  content: '';
+  position: absolute; left: 12%; right: 12%; top: 0; height: 42%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0));
+  border-radius: 14px 14px 60% 60%;
+  pointer-events: none;
+}
+.sch-card--agent {
+  left: 106px; top: 330px; width: 227px; height: 139px;
+  border: 2px solid rgba(47, 227, 138, .85);
+  box-shadow: 0 0 16px rgba(47, 227, 138, .34), 0 0 46px rgba(47, 227, 138, .14), inset 0 0 26px rgba(47, 227, 138, .09);
+}
+.sch-card--api {
+  left: 486px; top: 330px; width: 227px; height: 139px;
+  border: 2px solid rgba(77, 107, 254, .9);
+  box-shadow: 0 0 16px rgba(77, 107, 254, .36), 0 0 46px rgba(77, 107, 254, .16), inset 0 0 26px rgba(77, 107, 254, .1);
+}
+.sch-card--search {
+  left: 835px; top: 323px; width: 249px; height: 153px;
+  border: 2px solid rgba(255, 201, 60, .92);
+  box-shadow: 0 0 18px rgba(255, 201, 60, .36), 0 0 52px rgba(255, 201, 60, .16), inset 0 0 28px rgba(255, 201, 60, .1);
+}
+.sch-ico {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; justify-content: center;
+}
+.sch-card--agent .sch-ico { top: 21px; width: 48px; height: 42px; color: #2FE38A; }
+.sch-card--agent .sch-ico svg { width: 46px; height: 40px; filter: drop-shadow(0 0 6px rgba(47, 227, 138, .7)); }
+.sch-card--api .sch-ico { top: 16px; width: 62px; height: 46px; }
+.sch-card--api .sch-ico img { width: 60px; height: auto; display: block; filter: drop-shadow(0 0 8px rgba(77, 107, 254, .6)); }
+.sch-card--search .sch-ico { top: 22px; width: 50px; height: 50px; color: #FFC93C; }
+.sch-card--search .sch-ico svg { width: 48px; height: 48px; filter: drop-shadow(0 0 7px rgba(255, 201, 60, .65)); }
+.sch-card-title {
+  position: absolute; left: 0; right: 0; text-align: center;
+  color: #F4F7F5; font-weight: 800; line-height: 1.1; letter-spacing: .01em;
+}
+.sch-card--agent .sch-card-title { top: 85px; font-size: 24px; }
+.sch-card--api .sch-card-title { top: 68px; font-size: 26px; }
+.sch-card--search .sch-card-title { top: 98px; font-size: 27px; }
+.sch-card-sub {
+  position: absolute; left: 0; right: 0; text-align: center;
+  color: #7E8A86; font-size: 13.5px; line-height: 1.2; letter-spacing: .02em;
+}
+.sch-card--agent .sch-card-sub { top: 113px; }
+.sch-card--api .sch-card-sub { top: 97px; color: #7C89AE; }
+.sch-card--search .sch-card-sub { top: 125px; color: #B49A55; }
+.sch-card-glow {
+  position: absolute; inset: -10px;
+  border-radius: 20px;
+  opacity: .55;
+  pointer-events: none;
+  will-change: opacity;
+}
+.sch-card--agent .sch-card-glow { box-shadow: 0 0 34px rgba(47, 227, 138, .28); }
+.sch-card--api .sch-card-glow { box-shadow: 0 0 34px rgba(77, 107, 254, .3); }
+.sch-card--search .sch-card-glow { box-shadow: 0 0 38px rgba(255, 201, 60, .28); }
+
+/* ---------------- 胶囊标签 ---------------- */
+.sch-pill {
+  position: absolute;
+  height: 32px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: rgba(9, 15, 15, .92);
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .5);
+  font-size: 20px; font-weight: 700; color: #EEF2F0;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+.sch-pill--1 { left: 350px; top: 279px; }
+.sch-pill--2 { left: 722px; top: 280px; }
+.sch-pill-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.sch-pill--1 .sch-pill-dot { background: #16F888; box-shadow: 0 0 10px rgba(22, 248, 136, .9); }
+.sch-pill--2 .sch-pill-dot { background: #C6E94A; box-shadow: 0 0 10px rgba(198, 233, 74, .85); }
+
+/* ---------------- sparkle ---------------- */
+.sch-sparkles { position: absolute; inset: 0; pointer-events: none; }
+.sch-spark {
+  position: absolute;
+  color: #9CFFD0;
+  will-change: transform, opacity;
+}
+.sch-spark svg { display: block; filter: drop-shadow(0 0 6px rgba(120, 255, 200, .7)); }
+
+/* 参考片里的绿点标注胶囊 */
+.sch-note {
+  position: absolute; left: 676px; top: 240px;
+  height: 38px;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 0 17px;
+  border-radius: 999px;
+  background: rgba(9, 15, 15, .92);
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
+  font-size: 23px; font-weight: 700; color: #EEF2F0;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+.sch-note > i { width: 9px; height: 9px; border-radius: 50%; background: #16F888; box-shadow: 0 0 10px rgba(22,248,136,.9); flex: none; }
+
+.scene--search .vignette { opacity: .42; }

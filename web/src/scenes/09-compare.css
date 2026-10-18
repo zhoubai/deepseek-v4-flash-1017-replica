@@ -1,0 +1,255 @@
+/* ============================================================
+   SCENE 09 — compare 实测对比（74.0 → 86.0s）
+   同一份提示词 · 双窗口并排播放两段 AI 生成视频
+   ============================================================ */
+.scene--compare { background: #000; }
+
+/* 背景绿色 / 紫蓝氛围光 */
+.s9-bgglow {
+  position: absolute; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 46% at 50% 55%, rgba(47, 227, 138, .16), rgba(0, 0, 0, 0) 72%),
+    radial-gradient(30% 36% at 20% 52%, rgba(150, 110, 255, .10), rgba(0, 0, 0, 0) 72%),
+    radial-gradient(30% 36% at 80% 52%, rgba(80, 150, 255, .10), rgba(0, 0, 0, 0) 72%);
+}
+
+.s9-stage { position: absolute; inset: 0; }
+
+/* ---------------- 连接线 ---------------- */
+.s9-wires {
+  position: absolute; left: 0; top: 0;
+  width: 1280px; height: 720px;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2;
+}
+.s9-wire { filter: drop-shadow(0 0 4px rgba(255, 255, 255, .16)); }
+.s9-wdot { filter: drop-shadow(0 0 7px currentColor); }
+
+/* ---------------- 提示词窗口 ---------------- */
+.s9-prompt {
+  position: absolute;
+  left: 350px; top: 28px;
+  width: 563px; height: 191px;
+  z-index: 6;
+  border-radius: 13px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #262c2f 0, #22282b 34px, #1d2325 100%);
+  box-shadow:
+    0 26px 64px rgba(0, 0, 0, .62),
+    0 0 0 1px rgba(255, 255, 255, .07),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
+  transform-origin: 50% 30%;
+  will-change: transform, opacity;
+}
+.s9-prompt-bar {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 13px;
+  background: linear-gradient(#2c3235, #272d30);
+  border-bottom: 1px solid rgba(0, 0, 0, .42);
+}
+.s9-prompt-bar .win-dots i { width: 9px; height: 9px; }
+.s9-prompt-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .78);
+  letter-spacing: .01em;
+}
+.s9-prompt-tag {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: rgba(255, 255, 255, .26);
+}
+.s9-prompt-body {
+  position: absolute;
+  left: 0; right: 0; top: 34px; bottom: 0;
+  padding: 12px 18px 0;
+  font-size: 17px;
+  line-height: 1.46;
+  color: #D8DEDF;
+  letter-spacing: .002em;
+}
+.s9-pline { white-space: pre-wrap; min-height: 1.46em; }
+.s9-hl { font-style: normal; color: #8FE0C4; }
+.s9-caret {
+  display: inline-block;
+  width: 6px; height: 14px;
+  margin-left: 1px;
+  vertical-align: -2px;
+  background: #D3D9DA;
+  box-shadow: 0 0 8px rgba(180, 255, 220, .45);
+}
+
+/* ---------------- 窗口（霓虹描边 mac 窗口） ---------------- */
+.s9-win {
+  z-index: 5;
+  background: #06090f;
+  border: 1.6px solid rgba(47, 227, 138, .80);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgba(47, 227, 138, .16),
+    0 0 24px rgba(47, 227, 138, .42),
+    0 0 74px rgba(47, 227, 138, .22),
+    0 0 150px rgba(47, 227, 138, .10),
+    0 26px 60px rgba(0, 0, 0, .62);
+  will-change: left, top, width, height, transform;
+}
+.s9-win--r {
+  border-color: rgba(122, 134, 244, .88);
+  box-shadow:
+    0 0 0 1px rgba(122, 134, 244, .20),
+    0 0 24px rgba(122, 134, 244, .46),
+    0 0 74px rgba(122, 134, 244, .24),
+    0 0 150px rgba(122, 134, 244, .11),
+    0 26px 60px rgba(0, 0, 0, .62);
+}
+.s9-win::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 13px;
+  pointer-events: none;
+  z-index: 3;
+  box-shadow:
+    inset 0 0 26px rgba(47, 227, 138, .10),
+    inset 0 0 1px rgba(47, 227, 138, .55);
+}
+.s9-win--r::after {
+  box-shadow:
+    inset 0 0 26px rgba(122, 134, 244, .12),
+    inset 0 0 1px rgba(122, 134, 244, .6);
+}
+.s9-win .win-bar {
+  height: 34px;
+  padding: 0 13px;
+  gap: 10px;
+  background: linear-gradient(#282e32, #23292c);
+  border-bottom: 1px solid rgba(0, 0, 0, .4);
+}
+.s9-win .win-dots i { width: 10.5px; height: 10.5px; }
+.s9-win .win-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #E3EAEC;
+  letter-spacing: .005em;
+}
+.s9-win .win-body { background: #04060d; }
+.s9-canvas { display: block; width: 100%; height: 100%; background: #04060d; }
+
+/* ---------------- VS 圆标 ---------------- */
+.s9-vs {
+  position: absolute;
+  left: 561px; top: 414px;
+  width: 76px; height: 76px;
+  z-index: 7;
+  border-radius: 50%;
+  background: radial-gradient(120% 120% at 38% 28%, #FFFFFF 0%, #F2F5F7 55%, #D9DFE4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, .10),
+    0 0 26px rgba(180, 200, 255, .40),
+    0 12px 30px rgba(0, 0, 0, .55);
+  will-change: transform, opacity;
+}
+.s9-vs span {
+  font-size: 30px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -.02em;
+  color: #0A0D12;
+  transform: translateY(-1px);
+}
+
+/* ---------------- 顶部标题 ---------------- */
+.s9-title {
+  position: absolute;
+  left: 0; top: 88px;
+  width: 100%;
+  z-index: 7;
+  text-align: center;
+  font-size: 37px;
+  font-weight: 800;
+  letter-spacing: .015em;
+  color: #FFFFFF;
+  white-space: nowrap;
+  text-shadow:
+    0 0 34px rgba(140, 200, 255, .30),
+    0 4px 24px rgba(0, 0, 0, .70);
+  will-change: transform, opacity, filter;
+}
+.s9-title-dot {
+  margin: 0 .42em;
+  color: rgba(255, 255, 255, .52);
+  font-weight: 400;
+}
+
+/* ---------------- 底部发光胶囊标签 ---------------- */
+.s9-pillwrap {
+  position: absolute;
+  top: 560px;
+  width: 621px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  z-index: 7;
+  pointer-events: none;
+}
+.s9-pillwrap--l { left: 13px; }
+.s9-pillwrap--r { left: 646px; }
+.s9-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  height: 46px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: .012em;
+  color: #FFFFFF;
+  white-space: nowrap;
+  background: rgba(5, 9, 11, .78);
+  will-change: transform, opacity;
+}
+.s9-pill i { display: block; width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.s9-pill--l {
+  border: 1.5px solid rgba(47, 227, 138, .85);
+  box-shadow:
+    0 0 16px rgba(47, 227, 138, .38),
+    0 0 46px rgba(47, 227, 138, .16),
+    inset 0 0 14px rgba(47, 227, 138, .09);
+}
+.s9-pill--l i { background: #2FE38A; box-shadow: 0 0 10px #2FE38A, 0 0 22px rgba(47, 227, 138, .8); }
+.s9-pill--r {
+  border: 1.5px solid rgba(122, 134, 244, .9);
+  box-shadow:
+    0 0 16px rgba(122, 134, 244, .45),
+    0 0 46px rgba(122, 134, 244, .20),
+    inset 0 0 14px rgba(122, 134, 244, .10);
+}
+.s9-pill--r i { background: #9AA4FF; box-shadow: 0 0 10px #7A86F4, 0 0 22px rgba(122, 134, 244, .85); }
+
+/* ---------------- 1017 印章 ---------------- */
+.s9-stamp {
+  z-index: 8;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.s9-stamp .stamp { color: #98A2FF; }
+.s9-stamp .stamp {
+  filter:
+    drop-shadow(0 0 9px rgba(122, 134, 244, .55))
+    drop-shadow(0 0 26px rgba(78, 91, 214, .35));
+}
+
+/* ---------------- 头像 ---------------- */
+.s9-avatar { z-index: 9; }

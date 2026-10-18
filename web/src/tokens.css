@@ -1,0 +1,80 @@
+/* ============================================================
+   TOKENS — 复刻《DeepSeek V4.1 Flash 1017 动效》
+   设计坐标系 1280 x 720（与原片 1:1）
+   ============================================================ */
+
+@font-face {
+  font-family: 'NotoSC';
+  src: url('../assets/fonts/NotoSansSC-VF.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Zilla';
+  src: url('../assets/fonts/ZillaSlab-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Playfair';
+  src: url('../assets/fonts/PlayfairDisplay-VF.ttf') format('truetype-variations');
+  font-weight: 400 900;
+  font-display: block;
+}
+
+:root {
+  /* ---- 纸张（米色 editorial collage） ---- */
+  --paper:        #D2CDB4;
+  --paper-hi:     #E4DFCB;
+  --paper-lo:     #B9B39C;
+  --paper-ink:    #233B2B;   /* 墨绿主色 */
+  --paper-ink-2:  #33503E;
+  --paper-ink-3:  #5C7462;
+  --cream:        #F6F3E4;
+  --card:         #FDFCF3;
+  --card-edge:    #E6E2D0;
+
+  /* ---- 暗场（DeepSeek 官方 / 科技感） ---- */
+  --dark:         #070C0B;
+  --dark-2:       #0A1412;
+  --dark-3:       #0F1F1B;
+  --dark-line:    rgba(255, 255, 255, .075);
+  --dark-line-2:  rgba(255, 255, 255, .14);
+
+  /* ---- 品牌/强调色 ---- */
+  --green:        #2FE38A;
+  --green-2:      #56F2A6;
+  --green-deep:   #0C3F2D;
+  --green-glow:   rgba(47, 227, 138, .45);
+  --indigo:       #4A58DE;
+  --indigo-2:     #7A86F4;
+  --indigo-glow:  rgba(78, 91, 214, .55);
+  --red:          #D23A31;
+  --red-2:        #F1554A;
+  --gold:         #FFC93C;
+  --gold-2:       #FFDE8A;
+  --blue:         #4D6BFE;
+  --cyan:         #4FE4FF;
+  --purple:       #B57BFF;
+
+  /* ---- 字幕 ---- */
+  --cap-bg:       rgba(28, 28, 28, .74);
+  --cap-fg:       #FFFFFF;
+
+  /* ---- 字体 ---- */
+  --font:  'NotoSC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --serif: 'Zilla', 'Playfair', 'Songti SC', serif;
+  --mono:  'SF Mono', 'Menlo', 'Consolas', monospace;
+  --brush: 'Xingkai SC', 'STXingkai', 'NotoSC', cursive;
+
+  /* ---- 阴影（纸片/贴纸通用） ---- */
+  --shadow-paper: 0 26px 46px rgba(58, 48, 24, .26), 0 8px 16px rgba(58, 48, 24, .16);
+  --shadow-paper-sm: 0 10px 20px rgba(52, 43, 22, .16);
+  --shadow-sticker: drop-shadow(5px 7px 0 rgba(146, 141, 118, .40)) drop-shadow(0 1px 2px rgba(35, 59, 43, .10));
+  --shadow-dark: 0 28px 70px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .06);
+
+  /* ---- 缓动 ---- */
+  --ease-out:   cubic-bezier(.16, .84, .28, 1);
+  --ease-slam:  cubic-bezier(.2, 1.5, .4, 1);
+  --ease-soft:  cubic-bezier(.4, 0, .2, 1);
+}

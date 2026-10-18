@@ -1,0 +1,278 @@
+{
+ "weekend": {
+  "title": "周末",
+  "start": 0,
+  "end": 8.5,
+  "samples": [
+   {
+    "t": 2.12,
+    "active": "scene scene--weekend is-active",
+    "nodes": 53,
+    "shot": "project/verify/weekend_0.jpg"
+   },
+   {
+    "t": 4.25,
+    "active": "scene scene--weekend is-active",
+    "nodes": 53,
+    "shot": "project/verify/weekend_1.jpg"
+   },
+   {
+    "t": 6.38,
+    "active": "scene scene--weekend is-active",
+    "nodes": 53,
+    "shot": "project/verify/weekend_2.jpg"
+   }
+  ]
+ },
+ "today": {
+  "title": "就在今天",
+  "start": 8.5,
+  "end": 16,
+  "samples": [
+   {
+    "t": 10.38,
+    "active": "scene scene--today is-active",
+    "nodes": 76,
+    "shot": "project/verify/today_0.jpg"
+   },
+   {
+    "t": 12.25,
+    "active": "scene scene--today is-active",
+    "nodes": 76,
+    "shot": "project/verify/today_1.jpg"
+   },
+   {
+    "t": 14.12,
+    "active": "scene scene--today is-active",
+    "nodes": 76,
+    "shot": "project/verify/today_2.jpg"
+   }
+  ]
+ },
+ "release": {
+  "title": "官方发推",
+  "start": 16,
+  "end": 24.5,
+  "samples": [
+   {
+    "t": 18.12,
+    "active": "scene scene--release is-active",
+    "nodes": 91,
+    "shot": "project/verify/release_0.jpg"
+   },
+   {
+    "t": 20.25,
+    "active": "scene scene--release is-active",
+    "nodes": 91,
+    "shot": "project/verify/release_1.jpg"
+   },
+   {
+    "t": 22.38,
+    "active": "scene scene--release is-active",
+    "nodes": 91,
+    "shot": "project/verify/release_2.jpg"
+   }
+  ]
+ },
+ "naming": {
+  "title": "换别的厂家",
+  "start": 24.5,
+  "end": 31,
+  "samples": [
+   {
+    "t": 26.12,
+    "active": "scene scene--naming is-active",
+    "nodes": 78,
+    "shot": "project/verify/naming_0.jpg"
+   },
+   {
+    "t": 27.75,
+    "active": "scene scene--naming is-active is-typing",
+    "nodes": 78,
+    "shot": "project/verify/naming_1.jpg"
+   },
+   {
+    "t": 29.38,
+    "active": "scene scene--naming is-active",
+    "nodes": 78,
+    "shot": "project/verify/naming_2.jpg"
+   }
+  ]
+ },
+ "bench": {
+  "title": "官方跑分",
+  "start": 31,
+  "end": 37.5,
+  "samples": [
+   {
+    "t": 32.62,
+    "active": "scene scene--bench is-active",
+    "nodes": 263,
+    "shot": "project/verify/bench_0.jpg"
+   },
+   {
+    "t": 34.25,
+    "active": "scene scene--bench is-active",
+    "nodes": 263,
+    "shot": "project/verify/bench_1.jpg"
+   },
+   {
+    "t": 35.88,
+    "active": "scene scene--bench is-active",
+    "nodes": 263,
+    "shot": "project/verify/bench_2.jpg"
+   }
+  ]
+ },
+ "chart": {
+  "title": "通过率与每任务费用",
+  "start": 37.5,
+  "end": 44,
+  "samples": [
+   {
+    "t": 39.12,
+    "active": "scene scene--chart is-active",
+    "nodes": 224,
+    "shot": "project/verify/chart_0.jpg"
+   },
+   {
+    "t": 40.75,
+    "active": "scene scene--chart is-active",
+    "nodes": 224,
+    "shot": "project/verify/chart_1.jpg"
+   },
+   {
+    "t": 42.38,
+    "active": "scene scene--chart is-active",
+    "nodes": 224,
+    "shot": "project/verify/chart_2.jpg"
+   }
+  ]
+ },
+ "news": {
+  "title": "许愿式编程",
+  "start": 44,
+  "end": 57.5,
+  "samples": [
+   {
+    "t": 47.38,
+    "active": "scene scene--news is-active",
+    "nodes": 75,
+    "shot": "project/verify/news_0.jpg"
+   },
+   {
+    "t": 50.75,
+    "active": "scene scene--news is-active",
+    "nodes": 75,
+    "shot": "project/verify/news_1.jpg"
+   },
+   {
+    "t": 54.12,
+    "active": "scene scene--news is-active",
+    "nodes": 75,
+    "shot": "project/verify/news_2.jpg"
+   }
+  ]
+ },
+ "search": {
+  "title": "搜索与抓取 API",
+  "start": 57.5,
+  "end": 68,
+  "samples": [
+   {
+    "t": 60.12,
+    "active": "scene scene--search is-active",
+    "nodes": 104,
+    "shot": "project/verify/search_0.jpg"
+   },
+   {
+    "t": 62.75,
+    "active": "scene scene--search is-active",
+    "nodes": 104,
+    "shot": "project/verify/search_1.jpg"
+   },
+   {
+    "t": 65.38,
+    "active": "scene scene--search is-active sch-hold",
+    "nodes": 104,
+    "shot": "project/verify/search_2.jpg"
+   }
+  ]
+ },
+ "tested": {
+  "title": "我的实测",
+  "start": 68,
+  "end": 74,
+  "samples": [
+   {
+    "t": 69.5,
+    "active": "scene scene--tested is-active",
+    "nodes": 45,
+    "shot": "project/verify/tested_0.jpg"
+   },
+   {
+    "t": 71.0,
+    "active": "scene scene--tested is-active",
+    "nodes": 45,
+    "shot": "project/verify/tested_1.jpg"
+   },
+   {
+    "t": 72.5,
+    "active": "scene scene--tested is-active",
+    "nodes": 45,
+    "shot": "project/verify/tested_2.jpg"
+   }
+  ]
+ },
+ "compare": {
+  "title": "实测对比",
+  "start": 74,
+  "end": 86,
+  "samples": [
+   {
+    "t": 77.0,
+    "active": "scene scene--compare is-active",
+    "nodes": 83,
+    "shot": "project/verify/compare_0.jpg"
+   },
+   {
+    "t": 80.0,
+    "active": "scene scene--compare is-active",
+    "nodes": 83,
+    "shot": "project/verify/compare_1.jpg"
+   },
+   {
+    "t": 83.0,
+    "active": "scene scene--compare is-active",
+    "nodes": 83,
+    "shot": "project/verify/compare_2.jpg"
+   }
+  ]
+ },
+ "finale": {
+  "title": "终章 · 关注",
+  "start": 86,
+  "end": 90.35,
+  "samples": [
+   {
+    "t": 87.09,
+    "active": "scene scene--finale is-active",
+    "nodes": 100,
+    "shot": "project/verify/finale_0.jpg"
+   },
+   {
+    "t": 88.17,
+    "active": "scene scene--finale is-active fin-live",
+    "nodes": 100,
+    "shot": "project/verify/finale_1.jpg"
+   },
+   {
+    "t": 89.26,
+    "active": "scene scene--finale is-active fin-live",
+    "nodes": 100,
+    "shot": "project/verify/finale_2.jpg"
+   }
+  ]
+ },
+ "_errors": []
+}

@@ -1,0 +1,11 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "motiongit/BUILD.json": "b1426efd6946ac7c6e545aed27a7b4aa50117d573cb9be15e67adf937520da87",
+    "motiongit/scripts/motion": "441e56974316fa4662afd3c74947f10f745a58c9dccba3dca80dc49f021cbf0a",
+    "motiongit/scripts/motion.cmd": "c4bb48c19690a478f56ac466c2991cc3a3904c19d5c771ff9b0372ebb2e9edfd",
+    "motiongit/scripts/motion.mjs": "c37823db63cd6a70bb66009d7d3092e17cf92b2349e4770871f48fedcf180f2d",
+    "motiongit/SKILL.md": "cb90cc0dd4597df2eb4d707c8f8455314aa150f45e3272ffeefab443eb813270",
+    "motiongit/THIRD-PARTY-NOTICES.txt": "d2caa0ccb906b777ec7fd778dfcb09ffc327d65c94b4d5f8c5fc4c67b5da9f2f"
+  }
+}

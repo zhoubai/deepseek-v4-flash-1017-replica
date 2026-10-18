@@ -1,0 +1,16 @@
+{
+  "profile": "motiongit.public-helper-build/1",
+  "helperVersion": "1.0.0-rc.13",
+  "releaseContractMinimumHelper": "1.0.0-rc.3",
+  "sourceSnapshot": "0309ba38990363e84fe9f31597d9603b4bfd7f18",
+  "entry": "scripts/motion.mjs",
+  "sha256": "c37823db63cd6a70bb66009d7d3092e17cf92b2349e4770871f48fedcf180f2d",
+  "bytes": 267756,
+  "minimumNode": 22,
+  "profiles": [
+    "personal-download-v1",
+    "protected-v1",
+    "split-root-v1",
+    "native-python-node/1"
+  ]
+}

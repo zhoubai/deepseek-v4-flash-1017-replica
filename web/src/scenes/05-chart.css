@@ -1,0 +1,87 @@
+/* ============================================================
+   SCENE 05 — 通过率 × 每任务费用（37.5 → 44.0s）
+   ============================================================ */
+.scene--chart { background: #000; }
+.s5-stage { position: absolute; inset: 0; transform-origin: 50% 50%; will-change: transform; }
+
+/* ---------------- 窗口 ---------------- */
+.s5-win { z-index: 2; }
+.s5-win .win-body { background: #FFFFFF; overflow: hidden; }
+.s5-head { position: absolute; left: 24px; top: 10px; z-index: 2; }
+.s5-title { display: flex; align-items: baseline; }
+.s5-title b {
+  font-size: 20px; font-weight: 800; color: #1B1C1F; letter-spacing: -.015em;
+}
+.s5-title span {
+  margin-left: 9px;
+  font-size: 17.5px; font-weight: 600; color: #3A3D44; letter-spacing: .01em;
+}
+.s5-sub {
+  margin-top: 3px;
+  font-size: 11.5px; font-weight: 400; color: #8A8E94; letter-spacing: .02em;
+}
+
+/* ---------------- 图表 SVG ---------------- */
+.s5-svg {
+  position: absolute; left: 0; top: 0;
+  width: 772px; height: 512px;
+  display: block;
+  overflow: visible;
+}
+.s5-svg text { font-family: var(--font); font-size: 9px; }
+.s5-grid line { stroke: #CBD5EA; stroke-width: 1; opacity: .8; }
+.s5-grid--v line { stroke: #D6DEF0; opacity: .7; }
+.s5-axis { stroke: #BFC8DA; stroke-width: 1.1; }
+.s5-ticks-y text, .s5-ticks-x text { font-size: 8.6px; fill: #6A6F7C; letter-spacing: .01em; }
+.s5-axistitle { font-size: 8.2px; fill: #6A6F7C; letter-spacing: .03em; }
+.s5-eff { font-size: 6.6px; font-weight: 500; }
+.s5-name { font-size: 8px; font-weight: 600; letter-spacing: .005em; }
+.s5-line { filter: drop-shadow(0 0 1.2px rgba(255,255,255,.9)); }
+.s5-ref { stroke: #4D6BFE; stroke-width: 1.2; opacity: .9; }
+.s5-ref--v { opacity: .8; }
+.s5-navy-lab text { font-size: 8px; }
+.s5-navy-lab text:first-child { font-weight: 600; }
+.s5-navy-lab text:last-child { font-size: 9.4px; letter-spacing: .01em; }
+.s5-starnames text { font-size: 8px; font-weight: 600; }
+.s5-star polygon { filter: drop-shadow(0 1px 1px rgba(30, 40, 90, .22)); }
+
+/* 斩杀线 */
+.s5-kill-v, .s5-kill-h {
+  stroke-width: 5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(232, 57, 47, .7)) drop-shadow(0 0 1.5px rgba(232, 57, 47, .85));
+}
+.s5-ring {
+  stroke-width: 4;
+  opacity: .95;
+  filter: drop-shadow(0 0 3px rgba(61, 87, 232, .30));
+}
+.s5-ring2 { stroke-width: 1.4; opacity: .5; }
+
+/* ---------------- 深色胶囊 ---------------- */
+.s5-pill {
+  position: absolute; left: 852px;
+  display: inline-flex; align-items: center; gap: 14px;
+  height: 52px;
+  padding: 0 34px 0 28px;
+  border-radius: 999px;
+  background: rgba(43, 45, 46, .93);
+  border: 1px solid rgba(255,255,255,.055);
+  box-shadow: 0 14px 34px rgba(0,0,0,.45);
+  color: #F4F4F2;
+  font-size: 21px; font-weight: 600; letter-spacing: .012em;
+  white-space: nowrap;
+  z-index: 6;
+}
+.s5-pill i { display: block; width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.s5-pill--1 { top: 334px; }
+.s5-pill--1 i { background: #4D6BFE; box-shadow: 0 0 12px 1px rgba(77, 107, 254, .95); }
+.s5-pill--2 { top: 392px; }
+.s5-pill--2 i { background: #E8453C; box-shadow: 0 0 12px 1px rgba(232, 69, 60, .95); }
+.s5-pill--3 { top: 450px; }
+.s5-pill--3 i { background: #A9AEB4; box-shadow: 0 0 10px rgba(180, 185, 190, .7); }
+
+/* ---------------- 头像 / 印章 ---------------- */
+.s5-avatar { z-index: 8; }
+.s5-stamp { z-index: 9; transform-origin: 50% 50%; }
+.s5-stamp .stamp { filter: drop-shadow(0 4px 10px rgba(60, 72, 190, .22)); }

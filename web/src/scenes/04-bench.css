@@ -1,0 +1,205 @@
+/* ============================================================
+   SCENE 04 — 官方跑分
+   浅色 macOS 窗口 + 11 项跑分表 + 对比浮层
+   ============================================================ */
+.scene--bench { background: #000; }
+.s4-stage { position: absolute; inset: 0; transform-origin: 50% 52%; will-change: transform; }
+
+/* ---------------- 窗口 ---------------- */
+.s4-win { z-index: 2; }
+.s4-win .win-body { background: #F2F7FA; overflow: hidden; }
+.s4-tbl { position: absolute; inset: 0; }
+
+/* 高亮列（填充层在文字下，描边层在文字上） */
+.s4-hl { position: absolute; left: 150px; top: 0; width: 107px; height: 495px; pointer-events: none; }
+.s4-hl svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+.s4-hl--fill { z-index: 0; }
+.s4-hl--stroke { z-index: 4; }
+.s4-hl-fill {
+  fill: rgba(150, 177, 240, .40);
+  stroke: none;
+}
+.s4-hl-rect {
+  fill: none;
+  stroke: #4C5CE0;
+  stroke-width: 2.6;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(76, 92, 224, .45));
+}
+.s4-hl-scan {
+  position: absolute; left: 5px; right: 5px; top: 0; height: 118px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(232,240,255,.10) 28%,
+    rgba(246,249,255,.92) 55%,
+    rgba(232,240,255,.10) 80%,
+    rgba(255,255,255,0) 100%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------------- 行 / 单元格 ---------------- */
+.s4-r {
+  position: relative;
+  height: 37.818px;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #E5EAED;
+}
+.s4-r--head {
+  height: 79px;
+  background: #FBFDFE;
+  border-bottom: 1px solid #DCE3E7;
+}
+.s4-r:last-of-type { border-bottom: 0; }
+.s4-r > .s4-c { position: relative; z-index: 1; }
+.s4-r--head > .s4-c { border-right: 1px solid #E7ECEF; }
+.s4-r--head > .s4-c:last-child { border-right: 0; }
+
+.s4-c { display: flex; align-items: center; }
+.s4-c1 { width: 150px; }
+.s4-c2 { width: 107px; }
+.s4-c3 { width: 97px; }
+.s4-c4 { width: 78px; }
+.s4-c5 { width: 76px; }
+.s4-c6 { width: 78px; }
+.s4-c7 { width: 76px; }
+
+.s4-c--h { justify-content: center; }
+.s4-ht {
+  position: relative; z-index: 1;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.31;
+  letter-spacing: -.005em;
+  color: #1B1C1F;
+  text-align: center;
+}
+.s4-c1 .s4-ht { font-size: 16px; }
+
+.s4-gtag {
+  position: absolute;
+  inset: 3px 5px;
+  border-radius: 9px;
+  background: #C2F4D2;
+  border: 2px solid #2FD06B;
+  box-shadow: 0 0 18px rgba(47, 208, 107, .45), inset 0 0 0 1px rgba(255,255,255,.5);
+  z-index: 0;
+}
+
+/* 数据行 */
+.s4-v { justify-content: center; }
+.s4-v span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2B2D31;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.005em;
+}
+.s4-v i {
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 700;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: .5px;
+}
+.s4-v2 span, .s4-v7 span { font-weight: 700; color: #17181B; }
+.s4-v1 span, .s4-v3 span { font-weight: 500; color: #33363A; }
+.s4-v4 span { color: #2F3136; }
+
+.s4-lab { justify-content: flex-start; padding-left: 8px; }
+.s4-lab-in {
+  font-size: 13.2px;
+  font-weight: 700;
+  line-height: 1.17;
+  color: #18191C;
+  letter-spacing: -.01em;
+}
+.s4-lab-in i {
+  font-style: normal;
+  font-size: 10.2px;
+  font-weight: 500;
+  color: #6C6F74;
+  letter-spacing: 0;
+}
+
+/* 黄色渐变行 */
+.s4-hotbg {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, #F9EEC2 0%, #F5E4A0 42%, #EFDA8A 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------------- 超过 / 接近 胶囊 ---------------- */
+.s4-pill {
+  position: absolute; z-index: 5;
+  display: inline-flex; align-items: center; gap: 9px;
+  height: 34px;
+  padding: 0 17px 0 13px;
+  border-radius: 999px;
+  background: rgba(18, 24, 22, .90);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 10px 24px rgba(0,0,0,.40);
+  color: #F5F6F4;
+  font-size: 17px; font-weight: 700; letter-spacing: .02em;
+  white-space: nowrap;
+}
+.s4-pill i { display: block; width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.s4-pill--over { left: 716px; top: 243px; }
+.s4-pill--over i { background: #2FE38A; box-shadow: 0 0 12px 1px rgba(47, 227, 138, .9); }
+.s4-pill--near { left: 716px; top: 461px; }
+.s4-pill--near i { background: #4D6BFE; box-shadow: 0 0 12px 1px rgba(77, 107, 254, .9); }
+
+/* ---------------- 右侧条形对比浮层 ---------------- */
+.s4-cmp {
+  position: absolute; left: 828px; top: 330px;
+  width: 424px; height: 232px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(40, 44, 48, .985), rgba(29, 33, 37, .985));
+  box-shadow: 0 26px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.055);
+  z-index: 6;
+  overflow: hidden;
+}
+.s4-cmp-h { display: flex; align-items: baseline; gap: 10px; margin-bottom: 11px; line-height: 1.15; }
+.s4-cmp-h b { font-size: 20px; font-weight: 800; color: #FFFFFF; letter-spacing: .005em; }
+.s4-cmp-h span { font-size: 13px; font-weight: 400; color: #979B9F; }
+.s4-cmp-row { margin-bottom: 9px; }
+.s4-cmp-row:last-child { margin-bottom: 0; }
+.s4-cmp-l {
+  font-size: 14.5px; font-weight: 500; color: #ECEEEF;
+  margin-bottom: 3px; letter-spacing: -.005em; line-height: 1.18;
+}
+.s4-cmp-b { display: flex; align-items: center; gap: 9px; }
+.s4-cmp-tr {
+  position: relative; display: block;
+  width: 300px; height: 21px;
+  border-radius: 6px;
+  background: #2F3338;
+  overflow: hidden;
+  flex: none;
+}
+.s4-cmp-fi {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  border-radius: 6px;
+  transform-origin: 0 50%;
+}
+.s4-fi--blue { width: 96.25%; background: linear-gradient(90deg, #5A6AF6 0%, #8070FA 100%); box-shadow: 0 0 16px rgba(96, 110, 247, .85); }
+.s4-fi--gray { width: 92.5%; background: linear-gradient(90deg, #C3C6CB 0%, #A2A7AD 100%); }
+.s4-fi--gray2 { width: 91.25%; background: linear-gradient(90deg, #AEB2B8 0%, #8C9198 100%); }
+.s4-cmp-n {
+  width: 56px; text-align: right;
+  font-size: 22px; font-weight: 800; color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+}
+
+/* ---------------- 头像 / 印章 ---------------- */
+.s4-avatar { z-index: 8; }
+.s4-stamp { z-index: 9; transform-origin: 50% 50%; }
+.s4-stamp .stamp { filter: drop-shadow(0 6px 14px rgba(60, 72, 190, .25)); }

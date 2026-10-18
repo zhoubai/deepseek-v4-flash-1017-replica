@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>复刻 · DeepSeek V4.1 Flash 1017 动效</title>
+<link rel="stylesheet" href="src/tokens.css">
+<link rel="stylesheet" href="src/base.css">
+<link rel="stylesheet" href="src/scenes/00-weekend.css">
+<link rel="stylesheet" href="src/scenes/01-today.css">
+<link rel="stylesheet" href="src/scenes/02-release.css">
+<link rel="stylesheet" href="src/scenes/03-naming.css">
+<link rel="stylesheet" href="src/scenes/04-bench.css">
+<link rel="stylesheet" href="src/scenes/05-chart.css">
+<link rel="stylesheet" href="src/scenes/06-news.css">
+<link rel="stylesheet" href="src/scenes/07-search.css">
+<link rel="stylesheet" href="src/scenes/08-tested.css">
+<link rel="stylesheet" href="src/scenes/09-compare.css">
+<link rel="stylesheet" href="src/scenes/10-finale.css">
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <div id="scene-layer"></div>
+    <div id="caption-layer"><div class="caption" id="caption"></div></div>
+  </div>
+
+  <div id="topbar">
+    <div class="tb-left">
+      <div class="tb-brand"><i></i>REPLICA · DEEPSEEK V4.1 FLASH 1017<span class="tb-sub">复刻自抖音 @马安强AI普及 · 纯 HTML/CSS/GSAP</span></div>
+    </div>
+    <div class="tb-right">1280 × 720 · 90.3s<br>HTML / CSS / GSAP · 无视频素材驱动</div>
+  </div>
+
+  <div id="hud">
+    <button class="btn" data-act="play" title="播放 / 暂停 (Space)">
+      <svg width="13" height="13" viewBox="0 0 16 16"><path d="M4 2.6c0-.9 1-1.4 1.7-.9l8 5.4c.7.5.7 1.4 0 1.8l-8 5.4c-.7.5-1.7 0-1.7-.9V2.6z" fill="currentColor"/></svg>
+    </button>
+    <span class="time">00:00 / 01:30</span>
+    <div class="track">
+      <span class="track-label"></span>
+      <div class="track-rail"><div class="track-fill"></div></div>
+      <div class="track-segs"></div>
+      <div class="track-head" style="left:0%"></div>
+    </div>
+    <button class="btn" data-act="speed" title="播放速度">1×</button>
+    <button class="btn" data-act="pip" title="原片对照 (P)">原片对照</button>
+    <button class="btn" data-act="replay" title="重播">重播</button>
+    <button class="btn" data-act="fs" title="全屏 (F)">
+      <svg width="13" height="13" viewBox="0 0 16 16"><path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div id="pip">
+    <video src="assets/media/source.mp4" muted playsinline preload="metadata"></video>
+    <div class="pip-bar">
+      <b>原片</b><span>@马安强AI普及</span><span class="grow"></span>
+      <button data-act="mute">原声 关</button>
+      <button data-act="close">收起</button>
+    </div>
+  </div>
+
+  <div id="end">
+    <h2>复刻完成 <em>·</em> 90.3 秒</h2>
+    <p>纯 HTML / CSS / GSAP 重建动效与前端画面 · 未使用原片视频帧驱动的动画</p>
+    <div class="end-actions">
+      <button data-act="replay">重播全片</button>
+      <button data-act="close">留在当前帧</button>
+    </div>
+    <div class="chapters"></div>
+  </div>
+
+  <div id="boot">
+    <div class="boot-kicker">Motion Replica / Frontend Study</div>
+    <h1>DeepSeek <em>V4.1 Flash</em><br>1017 动效复刻</h1>
+    <div class="boot-sub">纸拼贴 · 官方发推 · 跑分表 · 斩杀线 · 许愿式编程 · 实测对比</div>
+    <button class="boot-play">
+      <svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.6c0-.9 1-1.4 1.7-.9l8 5.4c.7.5.7 1.4 0 1.8l-8 5.4c-.7.5-1.7 0-1.7-.9V2.6z" fill="currentColor"/></svg>
+      播放复刻
+    </button>
+    <div class="boot-meta"><span>1280×720</span><span>90.3s</span><span>11 CHAPTERS</span><span>GSAP TIMELINE</span></div>
+  </div>
+</div>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="src/engine.js"></script>
+<script src="src/shared.js"></script>
+<script src="src/captions.js"></script>
+<script src="src/scenes/00-weekend.js"></script>
+<script src="src/scenes/01-today.js"></script>
+<script src="src/scenes/02-release.js"></script>
+<script src="src/scenes/03-naming.js"></script>
+<script src="src/scenes/04-bench.js"></script>
+<script src="src/scenes/05-chart.js"></script>
+<script src="src/scenes/06-news.js"></script>
+<script src="src/scenes/07-search.js"></script>
+<script src="src/scenes/08-tested.js"></script>
+<script src="src/scenes/09-compare.js"></script>
+<script src="src/scenes/10-finale.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
